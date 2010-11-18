@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export NODE_MODULE_CACHE='/tmp/defjs'
+exec node `dirname $0`/../lib/index.js $@

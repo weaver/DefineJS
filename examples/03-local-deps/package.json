@@ -1,0 +1,6 @@
+{
+  "name": "hello-world",
+  "mappings": {
+    "utils": "file:some-package.zip"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "hello-world",
+  "mappings": {
+    "common-js": "http://github.com/kriszyp/commonjs-utils/zipball/master"
+  }
+}
