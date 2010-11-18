@@ -1,0 +1,13 @@
+{
+  "name": "define",
+  "description": "An asynchronous module system based on the CommonJS Asynchronous Definition specification.",
+  "version": "0.1.0",
+  "engines": { "node": ">= 0.2.4" },
+  "author": "Ben Weaver <ben@orangesoda.net>",
+  "contributors": [],
+  "dependencies": {},
+  "keywords": ["module", "package", "commonjs", "asynchronous", "define"],
+  "directories": { "lib": "./lib" },
+  "scripts": {},
+  "bin": { "defjs": "./bin/defjs" }
+}

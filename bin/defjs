@@ -1,4 +1,5 @@
 #!/bin/sh
 
+here=`readlink -f $0`
 export NODE_MODULE_CACHE='/tmp/defjs'
-exec node `dirname $0`/../lib/index.js $@
+exec node `dirname $here`/../lib/index.js $@

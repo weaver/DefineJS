@@ -1,4 +1,4 @@
-# Define.JS #
+# DefineJS #
 
 This is an asynchronous module system for Node.JS. It's based on the
 CommonJS [Asynchronous Definition][1] specification and uses the
@@ -17,13 +17,19 @@ code on the client- and server-side.
 
 ## Installation ##
 
-Fetch the code from `github` manually or use `npm`:
+Use `npm`:
 
-    npm install define.js
+   npm install define
 
-## Using Define.JS ##
+Or fetch the code from `github` and install manually:
 
-Define.JS comes with a convenience script called `defjs`. Use it
+   git clone http://github.com/weaver/DefineJS
+   cd DefineJS
+   node-waf configure build
+
+## Using DefineJS ##
+
+DefineJS comes with a convenience script called `defjs`. Use it
 instead of `node` to run a program:
 
     cd /path/to/project
