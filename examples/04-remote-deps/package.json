@@ -1,5 +1,9 @@
 {
   "name": "hello-world",
+  "dependencies": {
+    "sqlite": "",
+    "express": ""
+  },
   "mappings": {
     "common-js": "http://github.com/kriszyp/commonjs-utils/zipball/master"
   }

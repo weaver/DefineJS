@@ -1,0 +1,14 @@
+#!/bin/sh
+
+## Hi, this defnode script can be used instead of `node`. It
+## bootstraps the DefineJS module loader and loads up a main program.
+
+## Find the canonical location of this script in the filesystem.
+here=`readlink -f $0`
+
+## Use this location to determine the base of the DefineJS
+## installation.
+base=`dirname ${here}`/..
+
+## Bootstrap
+exec node ${base}/lib/index.js $@
