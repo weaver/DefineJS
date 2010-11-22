@@ -16,20 +16,20 @@ Do this:
 
 ## Why? ##
 
-+ **DefineJS saves effort.**
++ **Saves Effort**
 
-  Asynchronous modules are good for browsers (see
-  [RequireJS][2]). Using the same module format in both
-  places facilitates code sharing.
+  Asynchronous modules are good for browsers too (see
+  [RequireJS][2]). Using the same module format on the client and
+  server facilitates code reuse.
 
-+ **DefineJS is zero-config.**
++ **Automatic**
 
   Managing dependencies is tedious. DefineJS automatically fetches
   dependencies and caches them in a project-specific location. The
   first time you work on a new program, feel confident that you can
   dive in without solving dependency headaches first.
 
-+ **DefineJS is consistent.**
++ **Consistent**
 
   Every time you run your program, `package.json` is used to resolve
   names. If your program works when you commit it, you can be
@@ -50,8 +50,7 @@ Or you can fetch the code from `github` and install manually:
 
     git clone git://github.com/weaver/DefineJS.git
     cd DefineJS
-    node-waf configure build
-    sudo ln -s `readlink -f bin/defnode` /usr/local/bin/defnode
+    make && make install
 
 ## Using DefineJS ##
 
