@@ -3,7 +3,7 @@
 A reliable, [non-blocking module][1] loader for [Node.js][4]. See
 [http://definejs.org/][5] for more details.
 
-## Installation ##
+## Install It ##
 
 DefineJS relies on a few command-line utilities to fetch and extract
 remote packages. Make sure the `wget`, `tar`, and `unzip` commands are
@@ -44,6 +44,74 @@ specify one with the `-p` option.
 
     defjs -p /my/package ~/bin/script.js
 
+## About Caching ##
+
+Dependencies are downloaded on-demand and cached in a project-specific
+location. By default, this is in a `.packages` folder that's
+automatically created in the same directory as the root package.
+
+If you run `defjs` like this:
+
+    defjs -p /my/project
+
+It will cache dependencies in `/my/project/.packages/`. You can clear
+the cache any time by using the `-c` option. The `NODE_MODULE_CACHE`
+environment variable can override the cache location. For example:
+
+    export NODE_MODULE_CACHE=/tmp/project-packages
+    defjs -c /my/project
+
+will cache dependencies in `/tmp/project-packages` and clear anything
+already cached there before running the `main` script.
+
+## Module Format ##
+
+Refer to the [Modules/AsynchronousDefinition][1] proposal for a
+detailed description of the module format. Most of the time, you'll
+use this format:
+
+    define(['name1', 'name2', ...], function(mod1, mod2) {
+
+    });
+
+Whatever is returned from the `function` is used as the module's
+exports. If nothing is returned, whatever is bound into exports
+explicitly is used.
+
+Names have the same format as Node's `require()`:
+
+  + 'name': a top-level module
+  + './name': relative to the current module
+  + '/path/to/name': absolute module
+
+There are three special names: `exports`, `module`, and
+`require`.
+
+## Package Format ##
+
+Refer to the [Packages/1.1][3] draft for a detailed
+description. Dependencies are automatically resolved through
+[NPM][6]. To override this, add a `mappings` entry. At a minimum, a
+project should have a `package.json` file with `name`, `version`, and
+`main` entries.
+
+For example:
+
+    {
+      "name": "my-project",
+      "version": "0.5.2",
+      "main": "./server",
+      "dependencies": {
+        "express": "1.0"
+      },
+      "mappings": {
+        "commonjs-utils": "http://github.com/kriszyp/commonjs-utils/zipball/v0.2.2"
+      }
+    }
+
+will resolve the name `'express'` through NPM and will resolve
+`'commonjs-utils/lazy-array'` directly to a github repository.
+
 ## License ##
 
 Copyright (c) 2010, Ben Weaver &lt;ben@orangesoda.net&gt;
@@ -81,3 +149,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [3]: http://wiki.commonjs.org/wiki/Packages/1.1
 [4]: http://nodejs.org/
 [5]: http://definejs.org/
+[6]: http://npmjs.org/
