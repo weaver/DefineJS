@@ -1,66 +1,7 @@
 # DefineJS #
 
-This is an asynchronous module system for Node.JS. It's based on the
-CommonJS [Modules/AsynchronousDefinition][1] specification.
-
-Instead of writing modules like this:
-
-    var sys = require('sys');
-    sys.print('Hello, world!');
-
-Do this:
-
-    define(['sys'], function(sys) {
-      sys.print('Hello, world!');
-    });
-
-And instead starting programs with `node`, use `defjs`.
-
-## Try It ##
-
-To get a feel for how DefineJS works, take a look at the "Hello World"
-Express webserver.
-
-    git clone git://github.com/weaver/DefineJS.git
-    cd DefineJS
-    ./bin/defjs examples/express-hello
-
-    # Open http://localhost:3000/ in a browser.
-
-The `defjs` script sets up the module loader before running a
-program. In this case, it looks for a `package.json` file in the
-`examples/express-hello` folder. It uses this file to download
-dependencies and find the main script.
-
-## Why? ##
-
-The goal of this project is to make it easy to share code between the
-server and the browser. Dependencies should "just work".
-
-+ **Saves Effort**
-
-  Modules written in this style are good for browsers (see
-  [RequireJS][2]). Using the same module format on the client and
-  server facilitates code reuse.
-
-+ **Automatic**
-
-  DefineJS fetches dependencies on-demand. The first time you work on
-  a new program, feel confident that you can dive in without solving
-  dependency headaches first.
-
-+ **Isolated**
-
-  When dependencies are cached in a project-specific location. This
-  means you can develop or deploy multiple projects on the same server
-  without worrying about version mismatches.
-
-+ **Consistent**
-
-  Every time you run your program, `package.json` is used to resolve
-  names. If your program works when you commit it, you can be
-  reasonably sure it'll work when you hand it off to someone else or
-  deploy it.
+A reliable, [non-blocking module][1] loader for [Node.js][4]. See
+[http://definejs.org/][5] for more details.
 
 ## Installation ##
 
@@ -85,21 +26,21 @@ DefineJS groups modules into packages. Each package is described by a
 `name`, `version`, `dependencies`, &c. The module loader uses this
 information to find modules in other packages.
 
-Use the `defjs` script where you would normally use `node`. This
-will bootstrap the DefineJS module loader and run your program. If you
-run into trouble, try the help command:
+Use the `defjs` command where you would normally use `node`. This will
+bootstrap the DefineJS module loader and run your program. If you have
+trouble, try the `help` command:
 
     defjs help
 
-Load up a project with a `package.json` file at the top-level like
-this. Whatever is defined as `main` in your package will be
+Start a project with a `package.json` file at the top-level like
+this. Whatever is defined as `main` in the package will be
 automatically loaded (or `./lib/index` by default).
 
     defjs /path/to/project
 
-Or, run a script. Scripts need a package to help resolve module names.
-If there's not a `package.json` in the current directory, specify one
-with the `-p` option.
+To run a script directly, specify a package to help resolve module
+names.  If there's not a `package.json` in the current directory,
+specify one with the `-p` option.
 
     defjs -p /my/package ~/bin/script.js
 
@@ -138,3 +79,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [1]: http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition
 [2]: http://requirejs.org/
 [3]: http://wiki.commonjs.org/wiki/Packages/1.1
+[4]: http://nodejs.org/
+[5]: http://definejs.org/
