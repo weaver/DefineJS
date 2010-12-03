@@ -102,7 +102,7 @@ production environments consistent is tedious.
 
 DefineJS addresses these problems keeping dependencies in a
 project-specific location. In this way, it's like Python's
-[virtualenv][11]. It goes a step further by downloading dependencies
+[virtualenv][10]. It goes a step further by downloading dependencies
 on-demand.
 
 Names are always resolved through `package.json` files. When something
@@ -123,3 +123,4 @@ orangesoda.net. [Contributions][7] are welcome.
 [7]: https://github.com/weaver/DefineJS
 [8]: http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition
 [9]: http://requirejs.org/
+[10]: http://pypi.python.org/pypi/virtualenv
