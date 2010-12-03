@@ -1,0 +1,58 @@
+@import url(reset.css);
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    width: 600px !important;
+    color: #222;
+}
+
+h1, h2, h3 {
+    color: black;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 1em 0;
+}
+
+h2 {
+    font-size: 1.6em;
+    margin: 1em 0;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+pre {
+    margin: 0 0 1em 2em;
+}
+
+ul {
+    margin-bottom: 1em;
+}
+
+ul li {
+    list-style-type: disc;
+    margin: 0 0 0.5em 1em;
+    padding-left: 0.5em;
+}
+
+ul li:last-child {
+    margin-bottom: 0;
+}
+
+em {
+    font-style: italic;
+}
+
+a {
+    color: blue;
+}
