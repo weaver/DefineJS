@@ -97,8 +97,8 @@ bundle and minify packages before deployment.
 
 Hosting multiple projects on the same computer quickly leads to
 dependency hell with most module installers. Installing a new library
-just to quickly try it out leaves behind cruft. Keeping development
-and production environments synchronized is tedious.
+just to try it out leaves behind cruft. Keeping development and
+production environments consistent is tedious.
 
 DefineJS addresses these problems keeping dependencies in a
 project-specific location. In this way, it's like Python's
