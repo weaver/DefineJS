@@ -1,0 +1,25 @@
+.presentation {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute; top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+}
+
+.slide:first-child {
+    display: block;
+}

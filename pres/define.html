@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Asynchronous Javascript Modules</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+  </head>
+  <body id="doc" class="presentation">
+    <div class="slides">
+      <section id="title" class="slide">
+	<h1>Asynchronous Javascript Modules</h1>
+	<p class="abstract">Learn how to <code>define()</code> Javascript modules in Node and browsers for
+great effect. Amaze friends and colleagues with your impressively
+crafted packages.</p>
+	<div class="info">
+	  <p class="who">
+	    <span class="author">Ben Weaver</span>
+	    <span class="email">&lt;<a href="mailto:ben@orangesoda.net">ben@orangesoda.net</a>&gt;</span>
+            / <span class="affiliation">Medium</span>
+	  </p>
+	  <p class="website"><a href="http://definejs.org/">http://definejs.org/</a></p>
+	  <p class="when">2010.11.22</p>
+      </div>
+      </section>
+      <section id="overview" class="slide">
+	  <h2>Overview</h2>
+
+<ul>
+<li><p>Modules in browsers &amp; Node</p></li>
+<li><p>So what?</p></li>
+<li><p>CommonJS: <code>define()</code>, packages</p></li>
+<li><p>Loaders: RequireJS, DefineJS</p></li>
+<li><p>Examples</p></li>
+</ul>
+
+
+	</section><section id="modules" class="slide">
+	  <h2>Modules</h2>
+
+<ul>
+<li><p>How is Javascript code organized today?</p></li>
+<li><p>What do we need?</p></li>
+</ul>
+
+
+	</section><section id="browsers" class="slide">
+	  <h2>Browsers</h2>
+
+<ul>
+<li><p>Entry points are <code>&lt;script&gt;</code> tags</p></li>
+<li><p>No consistent module system</p></li>
+<li><p>Challenges:</p>
+
+<ul>
+<li>Simple sites, large web apps</li>
+<li>Minify code in production</li>
+<li>Don't repeat <code>&lt;script&gt;</code> tags everywhere</li>
+<li>Don't block the UI</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="browsers-example-html" class="slide">
+	  <h2>Browsers: Example HTML</h2>
+
+<pre><code>&lt;html&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    ...
+    &lt;script type="text/javascript" href="js/jquery.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" href="js/ui.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" href="js/main.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+	</section><section id="browsers-example-script" class="slide">
+	  <h2>Browsers: Example Script</h2>
+
+<pre><code>(function() {
+  $(function() {
+    menus('#nav');
+    setTimeout(later, 0);
+  });
+
+  function later() {
+    slideshow('#slides');
+    player('.video');
+  }
+
+  function slideshow(selector) { ... }
+  ...
+)();
+</code></pre>
+
+
+	</section><section id="browsers-deployment" class="slide">
+	  <h2>Browsers: Deployment</h2>
+
+<ul>
+<li><p>Minify the code: Closure Compiler, YUI Compressor, &amp;c</p></li>
+<li><p>One script instead of many, HTML has to change</p></li>
+<li><p>How to do this automatically?</p></li>
+</ul>
+
+
+	</section><section id="node" class="slide">
+	  <h2>Node</h2>
+
+<ul>
+<li><p>CommonJS: "batteries included" JS standards</p></li>
+<li><p><a href="http://wiki.commonjs.org/wiki/Modules/1.1">http://wiki.commonjs.org/wiki/Modules/1.1</a></p></li>
+<li><p>Special identifiers: <code>require()</code>, <code>module</code>, and <code>exports</code></p></li>
+<li><p>Module names: <code>'sys'</code>, <code>'connect/middleware/logger'</code>, <code>'./util'</code>, &amp;c</p></li>
+</ul>
+
+
+	</section><section id="node-example" class="slide">
+	  <h2>Node: Example</h2>
+
+<pre><code>var express = require('express');
+var app = express.createServer();
+
+app.get('/', function(req, res){
+  res.send('Hello World');
+});
+
+app.listen(3000);
+</code></pre>
+
+
+	</section><section id="node-npm" class="slide">
+	  <h2>Node: NPM</h2>
+
+<ul>
+<li><p>Node Package Manager</p></li>
+<li><p><code>npm</code> command is similar to Ruby's <code>gem</code></p></li>
+<li><p><code>package.json</code> describes package</p></li>
+<li><p><a href="http://registry.npmjs.org/">http://registry.npmjs.org/</a></p></li>
+</ul>
+
+
+	</section><section id="node-npm-example" class="slide">
+	  <h2>Node: NPM Example</h2>
+
+<pre><code>&gt; npm ls express
+express@1.0.0
+...
+&gt; npm install express
+...
+</code></pre>
+
+
+	</section><section id="so-what-" class="slide">
+	  <h2>So What?</h2>
+
+<ul>
+<li><p>Browser dependencies described in HTML, not in program</p></li>
+<li><p>Difficult to use the same code in Node &amp; browser</p></li>
+<li><p><code>require()</code> is <em>blocking</em></p>
+
+<ul>
+<li>Not good for browsers</li>
+<li>Unnatural for Node</li>
+</ul></li>
+<li><p><code>npm</code> is nice, but like many installers:</p>
+
+<ul>
+<li>Global, shared install location: multiple version problem</li>
+<li>Updating packages can break old projects</li>
+<li>Cruft from "trying out" packages</li>
+<li>Jump through hoops to setup a project in a new environment</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="so-what-we-want" class="slide">
+	  <h2>So What: We Want</h2>
+
+<ul>
+<li><p>Use same JS on client and server</p></li>
+<li><p>Code in a consistent style</p></li>
+<li><p>Non-blocking</p></li>
+<li><p>Tools that "just work"</p>
+
+<ul>
+<li>Browser: ease development and minify for deployment</li>
+<li>Node: less setup overhead, isolate project dependencies</li>
+<li>Both: fully describe dependencies</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="commonjs" class="slide">
+	  <h2>CommonJS</h2>
+
+<ul>
+<li><p>Draft specs and proposals for non-blocking modules</p></li>
+<li><p>Modules: <code>define()</code> instead of <code>require()</code></p></li>
+<li><p>Packages</p></li>
+</ul>
+
+
+	</section><section id="commonjs-define-" class="slide">
+	  <h2>CommonJS: define()</h2>
+
+<ul>
+<li><p><a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition</a></p></li>
+<li><p>New top-level identifier: <code>define</code>.</p></li>
+<li><p>Non-blocking!</p></li>
+<li><p>3 variants:</p>
+
+<ul>
+<li><p><code>define(function() { ... })</code></p></li>
+<li><p><code>define(['dep', ...], function(Dep) { ... })</code></p></li>
+<li><p><code>define('me', [...], function(...) { ... })</code></p></li>
+</ul></li>
+</ul>
+
+
+	</section><section id="commonjs-packages" class="slide">
+	  <h2>CommonJS: Packages</h2>
+
+<ul>
+<li><p><a href="http://wiki.commonjs.org/wiki/Packages/1.1">http://wiki.commonjs.org/wiki/Packages/1.1</a></p></li>
+<li><p>Fully describes dependencies!</p></li>
+<li><p><code>package.json</code> file at the top-level</p>
+
+<ul>
+<li><strong>name</strong>: who am I?</li>
+<li><strong>description</strong>: what am I?</li>
+<li><strong>version</strong>: when am I?</li>
+<li><strong>dependencies</strong>: what do I need?</li>
+<li><strong>mappings</strong>: where do I find it?</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="commonjs-versions" class="slide">
+	  <h2>CommonJS: Versions</h2>
+
+<ul>
+<li><p>Semantic Versioning: <a href="http://semver.org/">http://semver.org/</a></p></li>
+<li><p>X.Y.Z (Major.Minor.Patch)</p></li>
+<li><p>Tags: "vX.Y.Z"</p></li>
+</ul>
+
+
+	</section><section id="loaders" class="slide">
+	  <h2>Loaders</h2>
+
+<ul>
+<li><p>RequireJS: <a href="http://requirejs.org/">http://requirejs.org/</a></p></li>
+<li><p>DefineJS: <a href="http://definejs.org/">http://definejs.org/</a></p></li>
+</ul>
+
+
+	</section><section id="loaders-requirejs" class="slide">
+	  <h2>Loaders: RequireJS</h2>
+
+<ul>
+<li><p>Great for the browser, works in Node</p></li>
+<li><p>Loads defined modules or plain javascript</p></li>
+<li><p>Pre-packaged with jQuery (<code>require-jquery.js</code>)</p></li>
+<li><p>Optimizer tool</p>
+
+<ul>
+<li>JS: Combines and minifies scripts</li>
+<li>CSS: Inlines <code>@import</code> files and removes comments</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="loaders-requirejs-script" class="slide">
+	  <h2>Loaders: RequireJS Script</h2>
+
+<pre><code>define(['./nav'], function(Nav) {
+  $(function() {
+    Nav.menus('#nav');
+    define(['./media'], later);
+  });
+
+  function later(Media) {
+    Media.slideshow('#slides');
+    Media.player('.video');
+  }
+});
+</code></pre>
+
+
+	</section><section id="loaders-requirejs-html" class="slide">
+	  <h2>Loaders: RequireJS HTML</h2>
+
+<pre><code>&lt;html&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    ...
+    &lt;script data-main="main" href="js/require-jquery.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+	</section><section id="loaders-requirejs-lifecycle" class="slide">
+	  <h2>Loaders: RequireJS Lifecycle</h2>
+
+<ul>
+<li><p>Individual models loaded on-demand during development</p></li>
+<li><p>One <code>&lt;script&gt;</code> tag: modules describe their dependencies</p></li>
+<li><p>Optimize: <code>requirejs/build/build.sh app.build.js</code></p></li>
+</ul>
+
+
+	</section><section id="loaders-definejs" class="slide">
+	  <h2>Loaders: DefineJS</h2>
+
+<ul>
+<li><p>Written for Node, use the <code>defjs</code> script.</p></li>
+<li><p>Automatic, consistent:</p>
+
+<ul>
+<li>Names resolved through <code>package.json</code> (not <code>require.paths</code>)</li>
+<li>Isolated: each project gets its own module cache</li>
+<li>On-demand: dependencies are fetched as needed</li>
+<li>Map dependencies directly to github</li>
+</ul></li>
+<li><p>Compatible:</p>
+
+<ul>
+<li>Can use <code>require</code>-style packages</li>
+<li>Will fall back to Node's <code>require()</code> for top-level names</li>
+<li>Uses NPM registry to find packages</li>
+</ul></li>
+</ul>
+
+
+	</section><section id="loaders-definejs-script" class="slide">
+	  <h2>Loaders: DefineJS Script</h2>
+
+<pre><code>define(['express'], function(express) {
+  var app = express.createServer();
+
+  app.get('/', function(req, res){
+    res.send('Hello World');
+  });
+
+  app.listen(3000);
+});
+</code></pre>
+
+
+	</section><section id="loaders-definejs-package" class="slide">
+	  <h2>Loaders: DefineJS Package</h2>
+
+<pre><code>{
+  "name": "example",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "1.0"
+  }
+}
+</code></pre>
+
+
+	</section><section id="examples" class="slide">
+	  <h2>Examples</h2>
+
+<ul>
+<li>Try Express</li>
+<li>Make a Node project</li>
+<li>Optimizing iMeet</li>
+</ul>
+
+
+	</section><section id="questions-" class="slide">
+	  <h2>Questions?</h2>
+
+<ul>
+<li>Ben Weaver (ben@orangesoda.net)</li>
+<li><a href="http://definejs.org/">http://definejs.org/</a></li>
+</ul>
+
+	</section>
+    </div>
+    <script type="text/javascript" data-main="lib/main.js" src="lib/require-jquery-1.4.4.min.js"></script>
+  </body>
+</html>
+

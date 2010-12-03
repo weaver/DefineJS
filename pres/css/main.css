@@ -1,0 +1,8 @@
+@import url(reset.css);
+@import url(present.css);
+@import url(basic-theme.css);
+
+html {
+    width: 100%;
+    height: 100%;
+}

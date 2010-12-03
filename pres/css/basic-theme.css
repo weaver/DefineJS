@@ -1,0 +1,82 @@
+/* # Basic Theme # */
+
+.presentation {
+    font-family: Helvetica, Arial;
+    font-size: 16px;
+    color: #333;
+}
+
+.slide {
+    background-color: white;
+}
+
+.slide h1, .slide h2, .slide h3 {
+    font-family: Helvetica Nue, Helvetica, Arial;
+}
+
+.slide a {
+    color: firebrick;
+    text-decoration: none;
+}
+
+
+/* ## Normal Slides ## */
+
+.slide {
+    font-size: 1.5em;
+    line-height: 2em;
+}
+
+.slide h2 {
+    font-size: 2em;
+    margin: 1em 0 1em;
+}
+
+.slide ul > li {
+    list-style-type: disc;
+    margin-left: 1em;
+    padding-left: 0.5em;
+}
+
+.slide ol > li {
+    list-style-type: decimal;
+    margin-left: 1em;
+    padding-left: 0.5em;
+}
+
+.slide pre {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.slide strong {
+    font-weight: bold;
+}
+
+
+/* ## Title Slide ## */
+
+#title {
+    font-size: 1em;
+}
+
+#title h1 {
+    font-size: 3em;
+    margin: 4em 0 1.5em;
+}
+
+#title p.abstract {
+    font-size: 1.4em;
+    line-height: 1.6em;
+}
+
+#title .info {
+    position: absolute; bottom: 5em; left: 0;
+}
+
+#title .info > * {
+    font-size: 1.2em;
+    line-height: 1.4em;
+    color: #444;
+}
+
