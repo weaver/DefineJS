@@ -70,13 +70,13 @@ Refer to the [Modules/AsynchronousDefinition][1] proposal for a
 detailed description of the module format. Most of the time, you'll
 use this format:
 
-    define(['name1', 'name2', ...], function(mod1, mod2) {
+    define(['name1', 'name2', ...], function(mod1, mod2, ...) {
 
     });
 
 Whatever is returned from the `function` is used as the module's
-exports. If nothing is returned, whatever is bound into exports
-explicitly is used.
+exports. If nothing is returned, whatever is added to `exports` is
+used.
 
 Names have the same format as Node's `require()`:
 
@@ -111,6 +111,16 @@ For example:
 
 will resolve the name `'express'` through NPM and will resolve
 `'commonjs-utils/lazy-array'` directly to a github repository.
+
+## Status ##
+
+This project is a usable alpha. Feedback and contributions are
+welcome.
+
+TODO:
+
+  + Better version support
+  + Aync module fetching
 
 ## License ##
 
