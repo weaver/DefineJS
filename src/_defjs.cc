@@ -6,6 +6,13 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+# ifdef __APPLE__
+# include <crt_externs.h>
+# define environ (*_NSGetEnviron())
+# else
+extern char **environ;
+# endif
+
 using namespace v8;
 using namespace node;
 
