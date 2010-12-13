@@ -4,11 +4,14 @@
 ## bootstraps the DefineJS module loader and loads up a main program.
 
 ## Find the canonical location of this script in the filesystem.
-here=`python -c 'import os;print os.path.realpath("$0")`
+here=`python -c "import os;print os.path.realpath('$0')"`
 
 ## Use this location to determine the base of the DefineJS
 ## installation.
 base=`dirname ${here}`/..
+
+echo "HERE" $here
+echo "BASE" $base
 
 ## Bootstrap
 exec node ${base}/lib/index.js $@
