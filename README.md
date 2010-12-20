@@ -119,8 +119,13 @@ welcome.
 
 TODO:
 
-  + Better version support
-  + Aync module fetching
+  + Move best-dependency-in-group logic into package
+  + Better package names in filesystem
+  + Link URL attempts to final match (memo && filesystem)
+  + Delay `define()` body until code has finished evaluating.
+  + Support `overlay`.
+  + Support `engine`.
+  + Aync fetching
 
 ## License ##
 
