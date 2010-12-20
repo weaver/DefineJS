@@ -12,15 +12,15 @@ vows.describe('SemVer')
         assert.equal(semver.major, 1);
         assert.equal(semver.minor, 0);
         assert.equal(semver.patch, 2);
-        assert.equal(semver.build, 0);
-        assert.equal(semver.special, '');
+        assert.isUndefined(semver.build);
+        assert.isUndefined(semver.special);
       },
 
       'may be compared to others': function(topic) {
         var semver = SemVer.parse(topic);
         assert.equal(SemVer.cmp(semver, SemVer.parse('v1.0.2')), 0);
-        assert.ok(SemVer.cmp(semver, SemVer.parse('v0.9.9')) > 0);
-        assert.ok(SemVer.cmp(semver, SemVer.parse('2')) < 0);
+        assert.isTrue(SemVer.cmp(semver, SemVer.parse('v0.9.9')) > 0);
+        assert.isTrue(SemVer.cmp(semver, SemVer.parse('2.0.0')) < 0);
       },
 
       'can be tested': function(topic) {
@@ -43,13 +43,13 @@ vows.describe('SemVer')
         assert.isFalse(SemVer.isExact(topic));
       },
 
-      'has missing components filled with zeros': function(topic) {
-        parsedEqual(topic, '<SemVer 1.23.0>');
+      'has undefined missing components': function(topic) {
+        parsedEqual(topic, '<SemVer 1.23>', false);
       }
     },
 
     'when a version starts with "v"': {
-      topic: 'v1.0',
+      topic: 'v1.0.0',
 
       'it is a SemVer': function(topic) {
         assert.isTrue(SemVer.isSemVer(topic));
@@ -70,10 +70,10 @@ vows.describe('SemVer')
 
       'is sorted lexicographically': function(topic) {
         assert.equal(SemVer.cmp(topic, SemVer.parse('21.0.2beta3')), 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('21.0.2beta1')) > 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('21.0.2beta4')) < 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('21')) > 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('21.0.2')) < 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('21.0.2beta1')) > 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('21.0.2beta4')) < 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('21.0.0')) > 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('21.0.2')) < 0);
       }
    },
 
@@ -81,23 +81,23 @@ vows.describe('SemVer')
       topic: function() { return SemVer.parse('1.2.5-71'); },
 
       "which are a special case": function(topic) {
-        assert.equal(topic.special, '');
+        assert.isUndefined(topic.special);
         assert.equal(topic.build, 71);
         assert.equal(topic.toString(), '<SemVer 1.2.5-71>');
       },
 
       'are sorted as a fourth numeric component': function(topic) {
         assert.equal(SemVer.cmp(topic, SemVer.parse('1.2.5-71')), 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('1.2.5-6')) > 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('1.2.5-101')) < 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('1.2.4')) > 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('1.5')) < 0);
-        assert.ok(SemVer.cmp(topic, SemVer.parse('1.2.5beta1')) > 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('1.2.5-6')) > 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('1.2.5-101')) < 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('1.2.4')) > 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('1.5.0')) < 0);
+        assert.isTrue(SemVer.cmp(topic, SemVer.parse('1.2.5beta1')) > 0);
       }
     },
 
     'since versions can be compared': {
-      topic: function() { return ['1.0', '0.9.1', '0.9.1beta3'].map(SemVer.parse); },
+      topic: function() { return ['1.0.0', '0.9.1', '0.9.1beta3'].map(SemVer.parse); },
 
       'lists of them can be sorted': function(topic) {
         assert.deepEqual(
@@ -164,12 +164,24 @@ vows.describe('SemVer')
         assert.isTrue(topic.match(SemVer.parse('2.1.3')));
         assert.isFalse(topic.match(SemVer.parse('0.7.2')));
       }
+    },
+
+    'partial constraints': {
+      topic: ['0.0.1', '0.1.0', '0.2.0', '0.2.1', '0.2.1-2', '0.2.5', '1.3.0', '1.5.0'],
+
+      'match the greatest possible version': function(topic) {
+        satisfy('0.2', topic, '<SemVer 0.2.5>');
+        satisfy('>0.2', topic, '<SemVer 1.5.0>');
+        satisfy('<1', topic, '<SemVer 0.2.5>');
+        satisfy('<0.2', topic, '<SemVer 0.1.0>');
+        satisfy('>0.2.1 <0.2.3', topic, '<SemVer 0.2.1-2>');
+      }
     }
   })
   .export(module);
 
-function parsedEqual(ver, repr) {
-  var semver = SemVer.parse(ver);
+function parsedEqual(ver, repr, exact) {
+  var semver = SemVer.parse(ver, exact);
   assert.equal(semver.toString(), repr);
   return semver;
 }
