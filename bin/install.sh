@@ -15,5 +15,5 @@ else
   sudo mv $temp $dest
 fi
 
-(cd $dest && make && make install)
+(cd $dest && make && make setup)
 echo "DefineJS installation finished."
