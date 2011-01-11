@@ -1,0 +1,19 @@
+#!/bin/sh
+
+temp="/tmp/DefineJS"
+dest="/usr/local/DefineJS"
+
+set -x
+
+if [ -d $dest ]; then
+  cd $dest
+  git fetch && git merge origin/master
+else
+  rm -rf $temp
+  git clone git://github.com/weaver/Narthex.git $temp
+  sudo rm -rf $dest
+  sudo mv $temp $dest
+fi
+
+(cd $dest && make && make install)
+echo "DefineJS installation finished."
