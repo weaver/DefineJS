@@ -10,7 +10,7 @@ if [ -d $dest ]; then
   git fetch && git merge origin/master
 else
   rm -rf $temp
-  git clone git://github.com/weaver/Narthex.git $temp
+  git clone git://github.com/weaver/DefineJS.git $temp
   sudo rm -rf $dest
   sudo mv $temp $dest
 fi
