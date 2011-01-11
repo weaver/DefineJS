@@ -9,15 +9,19 @@ DefineJS relies on a few command-line utilities to fetch and extract
 remote packages. Make sure the `wget`, `tar`, and `unzip` commands are
 available.
 
-The simplest way to get started is to use `npm`:
+Run this command to download and install DefineJS:
+
+    curl https://github.com/weaver/DefineJS/raw/master/bin/install.sh | sh
+
+Or use `npm`:
 
     npm install define
 
-Or you can fetch the code from `github` and install manually:
+Or install manually:
 
     git clone git://github.com/weaver/DefineJS.git
     cd DefineJS
-    make && make install
+    make && make setup
 
 ## Use It ##
 
