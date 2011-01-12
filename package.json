@@ -1,7 +1,7 @@
 {
   "name": "define",
   "description": "An asynchronous module system based on the CommonJS Asynchronous Definition specification.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "engines": { "node": ">= 0.2.5" },
   "author": "Ben Weaver <ben@orangesoda.net>",
   "contributors": [],
