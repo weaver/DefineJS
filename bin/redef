@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if (renode &> /dev/null); then
+    node=renode exec `dirname $0`/defjs $@
+else
+    echo "Can't find renode."
+fi
