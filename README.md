@@ -48,6 +48,18 @@ specify one with the `-p` option.
 
     defjs -p /my/package ~/bin/script.js
 
+## Automatic Reloading ##
+
+DefineJS can work with [renode][7] to automatically restart an
+application when dependencies change. Just install [renode][7] and use
+`redef` instead of `defjs`. For example:
+
+    cd /my/project
+    redef .
+
+Disclaimer: this is helpful for development, not recommended for
+production.
+
 ## About Caching ##
 
 Dependencies are downloaded on-demand and cached in a project-specific
@@ -169,3 +181,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [4]: http://nodejs.org/
 [5]: http://definejs.org/
 [6]: http://npmjs.org/
+[7]: https://github.com/weaver/renode
