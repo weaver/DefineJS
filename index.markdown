@@ -7,6 +7,20 @@ title: A reliable, non-blocking module loader for Node
 
 A reliable, [non-blocking module][8] loader for [Node.js][1].
 
+## Install ##
+
+Run this command to download and install DefineJS:
+
+    curl https://github.com/weaver/DefineJS/raw/master/bin/install.sh | sh
+
+Or use [NPM][6]:
+
+    npm install define
+
+The source code is available on [github][7].
+
+## Introduction ##
+
 Here's an example module that uses [express][2] to create a "Hello
 World" webserver:
 
@@ -37,7 +51,6 @@ use. Do this by writing a [package][5] definition:
       "name": "hello",
       "description": "An express Hello World webserver.",
       "version": "0.1.0",
-      "main": "./server",
       "dependencies": {
         "express": "1.0"
       }
@@ -46,7 +59,7 @@ use. Do this by writing a [package][5] definition:
 Put this into a file called `package.json` next to `server.js`. Now
 you have a package. Run it like this:
 
-    defjs .
+    defjs server.js
 
 ## Features ##
 
@@ -59,20 +72,6 @@ you have a package. Run it like this:
 * Compatible with [Modules/AsynchronousDefinition][8] proposal.
 * Compatible with [Packages/1.1][5] draft.
 * Compatible with [RequireJS][9]: share code with the browser.
-
-## Install ##
-
-If you have [NPM][6] installed, you can do this:
-
-    npm install define
-
-Otherwise, install DefineJS manually:
-
-    git clone git://github.com/weaver/DefineJS.git
-    cd DefineJS
-    make && make install
-
-The source code is available on [github][7].
 
 ## Why? ##
 
