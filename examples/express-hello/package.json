@@ -3,6 +3,7 @@
   "description": "The Hello World webserver example from http://expressjs.com/",
   "main": "./server",
   "dependencies": {
-    "express": "1.0"
+    "express": "1.0",
+    "connect": ">= 0.3.0"
   }
 }

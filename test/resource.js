@@ -1,11 +1,30 @@
-var Cache = require('../lib/resource').Cache,
-    cache = new Cache('/tmp/test-defjs');
+var Vows = require('vows'),
+    Assert = require('assert'),
+    R = require('../lib/resource');
 
-function resolve(uri) {
-  console.log('resolved %s => %s', uri, cache.resolveSync(uri));
-}
+Vows.describe('Resources')
+  .addBatch({
+    'A Resource Cache': {
+      topic: new R.Cache('/tmp/test-defjs'),
 
-cache.destroySync();
-resolve('/tmp');
-resolve(__dirname + '/some-package.zip');
-resolve('http://github.com/kriszyp/commonjs-utils/zipball/master');
+      'can be set up': function(cache) {
+        cache.setupSync();
+      },
+
+      'can resolve package references': {
+        topic: function(cache) {
+          return cache.resolveSync('npm:///define/0.2.5');
+        },
+
+        'to an installed location': function(dest) {
+          console.log('installed', dest);
+          Assert.notEqual(dest.indexOf('/tmp/test-defjs'), -1);
+        }
+      },
+
+      'can be destroyed': function(cache) {
+        cache.destroySync();
+      }
+    }
+  })
+  .export(module);

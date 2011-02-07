@@ -3,3 +3,4 @@ build
 .#*
 .modules
 .packages
+.defjs
