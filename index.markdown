@@ -11,7 +11,7 @@ A reliable, [non-blocking module][8] loader for [Node.js][1].
 
 Run this command to download and install DefineJS:
 
-    curl https://github.com/weaver/DefineJS/raw/master/bin/install.sh | sh
+    curl http://definejs.org/install | sh
 
 Or use [NPM][6]:
 
