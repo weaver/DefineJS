@@ -10,13 +10,8 @@ here=`python -c "import os;print os.path.realpath('$0')"`
 ## installation.
 base=`dirname ${here}`/..
 
-if [ -z "${node}" ]; then
-  if (nave &> /dev/null); then
-      node="nave use v0.2.6"
-  else
-      node="node"
-  fi
-fi
+## Use this Node.
+node="node"
 
 ## Bootstrap
 exec $node ${base}/lib/main.js $@
