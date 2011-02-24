@@ -23,7 +23,8 @@ extern "C" {
   }
 }
 
-#define THROW_ERROR(message) ThrowException(Exception::Error(String::New(message)));
+#define THROW_ERROR(message) \
+  ThrowException(Exception::Error(String::New(message)))
 
 namespace defjs {
 
@@ -45,13 +46,11 @@ namespace defjs {
   Handle<Value> CallSync( const Arguments &args ) {
     HandleScope scope;
 
-    if (args.Length() < 4    ||
-	!args[0]->IsString() ||
-	!args[1]->IsArray()  ||
-	!args[2]->IsString() ||
-	!args[3]->IsArray()) {
-      return THROW_ERROR("Bad argument.");
-    }
+    if (args.Length() < 4)    return THROW_ERROR("Too few arguments");
+    if (!args[0]->IsString()) return THROW_ERROR("command should be a string");
+    if (!args[1]->IsArray())  return THROW_ERROR("args should be an array");
+    if (!args[2]->IsString()) return THROW_ERROR("cwd should be a string");
+    if (!args[3]->IsArray())  return THROW_ERROR("env should be an array");
 
     // (1) Program Name
     String::Utf8Value file(args[0]->ToString());

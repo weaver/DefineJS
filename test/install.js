@@ -6,16 +6,16 @@ var Vows = require('vows'),
 
 Vows.describe('Resources')
   .addBatch({
-    'Getting a folder': {
-      topic: function() { I.get(Path.dirname(__dirname), this.callback); },
+    // 'Getting a folder': {
+    //   topic: function() { I.get(Path.dirname(__dirname), this.callback); },
 
-      'symlinks it': function(err, dest) {
-        Assert.equal((err || '').toString(), '');
-        Assert.ok(Fs.lstatSync(dest).isSymbolicLink());
-        Assert.equal(Fs.readlinkSync(dest), Path.dirname(__dirname));
-        Fs.unlinkSync(dest);
-      }
-    },
+    //   'symlinks it': function(err, dest) {
+    //     Assert.equal((err || '').toString(), '');
+    //     Assert.ok(Fs.lstatSync(dest).isSymbolicLink());
+    //     Assert.equal(Fs.readlinkSync(dest), Path.dirname(__dirname));
+    //     Fs.unlinkSync(dest);
+    //   }
+    // }
 
     'Getting a local zipball': {
       topic: function() { I.get(Path.join(__dirname, 'some-package.zip'), this.callback); },
