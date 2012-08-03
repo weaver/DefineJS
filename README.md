@@ -6,19 +6,42 @@ between Node and a browser. The client needs to use an AMD loader like
 [RequireJS][0].
 
 
-## Install It ##
+## Installation ##
 
-Use `npm` to install DefineJS. Add a `"define": "1.0"` dependency to
-your project's `package.json` and run `npm install`, or use `npm
-install define` to install manually.
+Add a dependency to your project's `package.json` and run `npm
+install`:
+
+    {
+        "dependencies" {
+	    "define": "1.0"
+	}
+    }
+
+or install manually:
+
+    npm install define
 
 
-## Use It ##
+## Get Started ##
 
-In your app's main script, `require('define')`. This will add `define`
-as a `global` so it's available everywhere else in the application
-automatically. See `examples/shared-code` for a working example web
-server.
+In your app's main script:
+
+    require('define');
+
+This will add `define` as a `global` so it's available everywhere else
+in the application automatically. Create AMD modules anywhere you
+like. They can be loaded with `require` or `define`.
+
+See `examples/shared-code` for a working example web server.
+
+
+## Features ##
+
++ Share code with the browser!
++ Very lightweight integration with Node's module system.
++ No need for conditional `require('define')` in every AMD module.
++ Compatible with [AMD Define][2].
++ Compatible with [AMD Require][3].
 
 
 ## DefineJS is Global ##
@@ -44,6 +67,22 @@ similar [amdefine convention][1] because the RequireJS optimizer
 strips it away.
 
 
+## Module Ids ##
+
+The [AMD Spec][2] allows module definitions to optionally specify an
+id. This is very helpful for transport when several modules are
+concatenated into the same file.
+
+DefineJS currently accepts module ids, but ignores them. This is
+because it's just a very light wrapper around Node's `require`. Node
+uses a module's absolute filename as the id, so defining more than one
+module in a file is currently unsupported.
+
+In practice, this doesn't matter very much. Just follow the
+one-module-to-one-file convention and use something like the
+[RequireJS Optimizer][4] for client-side code in production.
+
+
 ## See Also ##
 
 Refer to the [AMD Wiki][1] for more information about AMD.
@@ -51,3 +90,5 @@ Refer to the [AMD Wiki][1] for more information about AMD.
 [0]: http://requirejs.org/
 [1]: http://requirejs.org/docs/node.html#nodeModules
 [2]: https://github.com/amdjs/amdjs-api/wiki/AMD
+[3]: https://github.com/amdjs/amdjs-api/wiki/require
+[4]: http://requirejs.org/docs/optimization.html
