@@ -1,6 +1,6 @@
 {
 	"name": "define",
-	"description": "An AMD wrapper for Node's module system",
+	"description": "An AMD wrapper for Node modules",
 	"version": "1.0.0",
 	"author": "Ben Weaver <ben@orangesoda.net>",
 	"keywords": ["module", "package", "amd", "asynchronous", "define"],

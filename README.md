@@ -36,19 +36,6 @@ for the client-side loader anyway, you should probably just use the
 similar [amdefine convention][1] because the RequireJS optimizer
 strips it away.
 
-For example:
-
-    define(['exports', 'http'], function(exports, http) {
-        function helloServer(port) {
-            return http.createServer(handle).listen(port);
-        };
-
-        function handle(req, res) {
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end('Hello World\n');
-        }
-    });
-
 
 ## See Also ##
 
