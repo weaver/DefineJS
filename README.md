@@ -6,14 +6,14 @@ between Node and a browser. The client needs to use an AMD loader like
 [RequireJS][0].
 
 
-## Installation ##
+## Install It ##
 
-Add a `"define": "1.0"` dependency to your project's `package.json`
-and run `npm install`, or use `npm install define` to install
-manually.
+Use `npm` to install DefineJS. Add a `"define": "1.0"` dependency to
+your project's `package.json` and run `npm install`, or use `npm
+install define` to install manually.
 
 
-## How To Use ##
+## Use It ##
 
 In your app's main script, `require('define')`. This will add `define`
 as a `global` so it's available everywhere else in the application
