@@ -9,5 +9,5 @@
 	"scripts": {
 		"prepublish": "npm prune"
 	},
-	"engines": { "node": "*" },
+	"engines": { "node": "*" }
 }

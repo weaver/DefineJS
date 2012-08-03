@@ -1,0 +1,10 @@
+{
+	"name": "shared-code-example",
+	"description": "Example web server sharing code with AMD modules.",
+	"version": "1.0.0",
+	"dependencies": {
+		"express": "3.0",
+		"define": "1.0",
+        "jade": "0.27"
+	}
+}

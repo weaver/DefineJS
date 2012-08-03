@@ -4,3 +4,4 @@ build
 .modules
 .packages
 .defjs
+node_modules

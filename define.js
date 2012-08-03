@@ -111,18 +111,16 @@ function load(mod, deps, factory) {
 		return bind[name] || bind.require(name);
 	});
 
-	process.nextTick(function() {
-		if (typeof factory === 'function') {
-			result = factory.apply(mod.exports, deps);
-		}
-		else {
-			result = factory;
-		}
+	if (typeof factory === 'function') {
+		result = factory.apply(mod.exports, deps);
+	}
+	else {
+		result = factory;
+	}
 
-		if (result) {
-			mod.exports = result;
-		}
-	});
+	if (result) {
+		mod.exports = result;
+	}
 }
 
 // makeRequire

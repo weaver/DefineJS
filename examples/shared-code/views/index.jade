@@ -1,0 +1,18 @@
+doctype 5
+html
+  head
+    title Example
+    link(rel="stylesheet", type="text/css", href="/css/style.css")
+  body
+    p.intro
+      | Phone number validation logic is shared between the client and
+      | the server. Try it with and without javascript enabled.
+
+    p.status= status
+    form(method='post', action='/')
+      fieldset
+        label Phone Number
+        input(type="text", name="phone", value=phone)
+      .buttons
+        input(type="submit", value="Validate")
+    script(type='text/javascript', src='/js/require-jquery.js', data-main='/js/main.js')

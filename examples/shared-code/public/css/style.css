@@ -1,0 +1,29 @@
+body {
+    width: 350px;
+    margin: 0 auto;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+fieldset input {
+    width: 98%;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 1.2em;
+    padding: 0.2em;
+    color: #333;
+}
+
+.buttons {
+    margin-top: 1em;
+    text-align: right;
+}
