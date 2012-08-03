@@ -37,7 +37,7 @@ See `examples/shared-code` for a working example web server.
 
 ## Features ##
 
-+ Share code with the browser!
++ Share code with web browsers!
 + Very lightweight integration with Node's module system.
 + No need for conditional `require('define')` in every AMD module.
 + Compatible with [AMD Define][2].
@@ -85,7 +85,7 @@ one-module-to-one-file convention and use something like the
 
 ## See Also ##
 
-Refer to the [AMD Wiki][1] for more information about AMD.
+Refer to the [AMD Wiki][2] for more information about AMD.
 
 [0]: http://requirejs.org/
 [1]: http://requirejs.org/docs/node.html#nodeModules

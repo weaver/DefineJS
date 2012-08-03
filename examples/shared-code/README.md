@@ -8,7 +8,7 @@ things consistent and DRY.
 
 ## Files ##
 
-+ app.js -- Node/Express webserver
-+ public/js/main.js -- client-side validation
-+ public/js/validation.js -- shared code
++ app.js :: Node/Express webserver
++ public/js/main.js :: client-side validation
++ public/js/validation.js :: shared code
 
