@@ -1,13 +1,13 @@
 {
-  "name": "define",
-  "description": "An asynchronous module system based on the CommonJS Asynchronous Definition specification.",
-  "version": "0.4.4",
-  "engines": { "node": ">= 0.4.1" },
-  "author": "Ben Weaver <ben@orangesoda.net>",
-  "contributors": [],
-  "dependencies": {},
-  "keywords": ["module", "package", "commonjs", "asynchronous", "define"],
-  "directories": { "lib": "./lib" },
-  "scripts": {},
-  "bin": { "defjs": "./bin/defjs", "redef": "./bin/redef" }
+	"name": "define",
+	"description": "An AMD wrapper for Node's module system",
+	"version": "1.0.0",
+	"author": "Ben Weaver <ben@orangesoda.net>",
+	"keywords": ["module", "package", "amd", "asynchronous", "define"],
+	"repository": "git://github.com/weaver/DefineJS.git",
+	"main": "define",
+	"scripts": {
+		"prepublish": "npm prune"
+	},
+	"engines": { "node": "*" },
 }
