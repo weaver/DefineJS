@@ -13,8 +13,8 @@ install`:
 
     {
         "dependencies" {
-	    "define": "1.0"
-	}
+            "define": "1.0"
+        }
     }
 
 or install manually:
