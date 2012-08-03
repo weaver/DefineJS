@@ -1,3 +1,0 @@
-[submodule "ext/reparse"]
-	path = .ext/reparse
-	url = git://github.com/weaver/ReParse.git
