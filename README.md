@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/weaver/DefineJS.png)](http://travis-ci.org/weaver/DefineJS)
 # DefineJS #
 
 DefineJS is an Asynchronous Module Definition wrapper for
