@@ -1,7 +1,7 @@
 {
 	"name": "define",
 	"description": "An AMD wrapper for Node modules",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Ben Weaver <ben@orangesoda.net>",
 	"keywords": ["module", "package", "amd", "asynchronous", "define"],
 	"repository": "git://github.com/weaver/DefineJS.git",

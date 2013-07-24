@@ -188,7 +188,6 @@ function callingFilename() {
 
 	for (var idx = 1, lim = lines.length; idx < lim; idx++) {
 		probe = lines[idx].match(/\((.*):\d+:\d+\)/);
-		console.log("probe", probe);
 		if (!probe) {
 			break;
 		}
